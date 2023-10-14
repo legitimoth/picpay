@@ -1,11 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using picpay;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// DbContext
+builder.Services.AddDbContext<PicPayDbContext>(
+    options => options.UseSqlite("Data Source=./Data/picpay.db"));
 
 var app = builder.Build();
 

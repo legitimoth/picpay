@@ -4,9 +4,9 @@ namespace picpay;
 
 public class PicPayDbContext : DbContext
 {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public PicPayDbContext(DbContextOptions<PicPayDbContext> options)
+        : base(options)
         {
-            optionsBuilder.UseSqlite("Data Source=./Data/picpay.db");
         }
 
         public DbSet<User> Users { get; set; }
