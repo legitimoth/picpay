@@ -1,19 +1,23 @@
 ﻿
+using AutoMapper;
+
 namespace picpay;
 
 public class UserService : IUserService
 {
     private readonly IUserRepository _repository;
+    private readonly IMapper _mapper;
 
-    public UserService(IUserRepository repository)
+    public UserService(IUserRepository repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
      public async Task<List<UserDTO>> GetAll()
     {
-        throw new NotImplementedException();
-        //return await _repository.GetAll();
+        var users = await _repository.GetAll();
+        return users.Select(u => _mapper.Map<UserDTO>(u)).ToList();
     }
 
     public Guid Create(UserCreateDTO userCreateDTO)

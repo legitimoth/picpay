@@ -17,6 +17,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PicPayDbContext>(
     options => options.UseSqlite("Data Source=./Data/picpay.db"));
 
+// AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
