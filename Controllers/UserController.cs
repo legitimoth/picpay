@@ -25,4 +25,15 @@ public class UserController : ControllerBase
     {
         return await _service.GetAll();
     }
+
+    /// <summary>
+    /// Cria um novo usuário.
+    /// </summary>
+    /// <param name="userCreateDTO">Os dados do usuário a serem criados.</param>
+    /// <returns>O identificador único (GUID) do usuário criado.</returns>
+    [HttpPost]
+    public async Task<Guid> Create(UserCreateDTO userCreateDTO)
+    {
+        return await _service.Create(userCreateDTO);
+    }
 }

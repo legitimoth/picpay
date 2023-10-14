@@ -7,5 +7,6 @@ public record UserDTO
     string Document,
     decimal Wallet,
     UserType Type,
+    string Email,
     Guid Id
 );

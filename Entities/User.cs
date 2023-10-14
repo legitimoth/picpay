@@ -8,6 +8,7 @@ public class User
     public string Document { get; private set; }
     public decimal Wallet { get; private set; }
     public UserType Type { get; private set; }
+    public string Email { get; private set; }
     public bool Active { get; private set; }
 
     public User(
@@ -16,7 +17,8 @@ public class User
         string document,
         decimal wallet,
         UserType type,
-        Guid Id = default
+        string email,
+        Guid id = default
     )
     {
         FirstName = firstName;
@@ -25,5 +27,7 @@ public class User
         Wallet = wallet;
         Type = type;
         Active = true;
+        Email = email;
+        Id = id;
     }
 }

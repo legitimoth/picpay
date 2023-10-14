@@ -18,9 +18,10 @@ public class UserRepository : IUserRepository
         return _context.Users.Where(u => u.Active).ToListAsync();
     }
 
-    public Guid Create()
+    public Guid Create(User user)
     {
-        throw new NotImplementedException();
+        _context.Add(user);
+        return user.Id;
     }
 
     public Task Delete(Guid Id)
@@ -36,5 +37,14 @@ public class UserRepository : IUserRepository
     public void Update(User user)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<bool> Exists(User user)
+    {
+        var userDb = await _context.Users.FirstOrDefaultAsync(u =>
+            u.Document == user.Document || u.Email == user.Email
+        );
+
+        return userDb != null;
     }
 }

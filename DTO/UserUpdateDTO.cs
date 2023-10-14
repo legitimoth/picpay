@@ -6,5 +6,6 @@ public record UserUpdateDTO
     string LastName,
     string Document,
     decimal Wallet,
+    string Email,
     UserType Type
 );
