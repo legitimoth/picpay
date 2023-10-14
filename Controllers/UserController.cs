@@ -36,4 +36,15 @@ public class UserController : ControllerBase
     {
         return await _service.Create(userCreateDTO);
     }
+
+    /// <summary>
+    /// Obtém um usuário por ID.
+    /// </summary>
+    /// <param name="id">O identificador único (GUID) do usuário a ser recuperado.</param>
+    /// <returns>Um objeto UserDTO representando o usuário encontrado.</returns>
+    [HttpGet("{id}")]
+    public async Task<UserDTO> GetById(Guid id)
+    {
+        return await _service.GetById(id);
+    }
 }

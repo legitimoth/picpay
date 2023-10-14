@@ -24,14 +24,14 @@ public class UserRepository : IUserRepository
         return user.Id;
     }
 
-    public Task Delete(Guid Id)
+    public Task Delete(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<User> GetById()
+    public async Task<User?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Users.FindAsync(id);
     }
 
     public void Update(User user)

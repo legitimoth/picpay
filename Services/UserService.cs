@@ -42,9 +42,11 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public Task<UserDTO> GetById()
+    public async Task<UserDTO> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        var userDb = await _repository.GetById(id) ?? throw new Exception("Usuário não encontrado!");
+
+        return _mapper.Map<UserDTO>(userDb);
     }
 
     public void Update(UserUpdateDTO userUpdateDTO)
