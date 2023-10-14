@@ -6,6 +6,6 @@ public interface IUserRepository
     public Task<User?> GetById(Guid id);
     public Guid Create(User user);
     public void Update(User user);
-    public Task Delete(Guid Id);
+    public void Delete(User user);
     public Task<bool> Exists(User user);
 }

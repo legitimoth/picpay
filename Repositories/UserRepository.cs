@@ -24,9 +24,10 @@ public class UserRepository : IUserRepository
         return user.Id;
     }
 
-    public Task Delete(Guid id)
+    public void Delete(User user)
     {
-        throw new NotImplementedException();
+        user.Disable();
+        _context.Update(user);
     }
 
     public async Task<User?> GetById(Guid id)
@@ -36,7 +37,7 @@ public class UserRepository : IUserRepository
 
     public void Update(User user)
     {
-        throw new NotImplementedException();
+        _context.Update(user);
     }
 
     public async Task<bool> Exists(User user)

@@ -30,4 +30,6 @@ public class User
         Email = email;
         Id = id;
     }
+
+    public void Disable() => Active = false;
 }

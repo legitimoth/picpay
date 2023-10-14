@@ -47,4 +47,27 @@ public class UserController : ControllerBase
     {
         return await _service.GetById(id);
     }
+
+    /// <summary>
+    /// Exclui um usuário por ID.
+    /// </summary>
+    /// <param name="id">O identificador único (GUID) do usuário a ser excluído.</param>
+    /// <returns>Uma resposta HTTP indicando o sucesso ou falha da operação.</returns>
+    [HttpDelete("{id}")]
+    public async Task Delete(Guid id)
+    {
+        await _service.Delete(id);
+    }
+
+    /// <summary>
+    /// Atualiza um usuário existente com base no ID.
+    /// </summary>
+    /// <param name="id">O identificador único (GUID) do usuário a ser atualizado.</param>
+    /// <param name="userUpdateDTO">Os dados de atualização do usuário.</param>
+    /// <returns>Uma resposta HTTP indicando o sucesso ou falha da operação.</returns>
+    [HttpPut("{id}")]
+    public async Task Update(Guid id, UserUpdateDTO userUpdateDTO)
+    {
+        await _service.Update(id, userUpdateDTO);
+    }
 }
