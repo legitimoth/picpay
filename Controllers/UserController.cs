@@ -70,4 +70,16 @@ public class UserController : ControllerBase
     {
         await _service.Update(id, userUpdateDTO);
     }
+
+    /// <summary>
+    /// Realiza uma transferência de fundos entre contas.
+    /// </summary>
+    /// <param name="payerId">O identificador único (GUID) da conta que realiza o pagamento.</param>
+    /// <param name="transferDTO">Os detalhes da transferência, incluindo o destinatário e o valor.</param>
+    /// <returns>O identificador único (GUID) da transação de transferência criada.</returns>
+    [HttpPatch("{payerId}")]
+    public async Task<Guid> Transfer(Guid payerId, TransferDTO transferDTO)
+    {
+        return await _service.Transfer(payerId, transferDTO);
+    }
 }

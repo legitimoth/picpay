@@ -8,12 +8,22 @@ public class UserService : IUserService
     private readonly IUserRepository _repository;
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ITransactionService _transactionService;
+    private readonly IPaymentService _paymentService;
 
-    public UserService(IUserRepository repository, IMapper mapper, IUnitOfWork unitOfWork)
+    public UserService(
+        IUserRepository repository,
+        IMapper mapper,
+        IUnitOfWork unitOfWork,
+        ITransactionService transactionService,
+        IPaymentService paymentService
+    )
     {
         _repository = repository;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
+        _transactionService = transactionService;
+        _paymentService = paymentService;
     }
 
      public async Task<List<UserDTO>> GetAll()
@@ -63,4 +73,37 @@ public class UserService : IUserService
 
     private async Task<User>_getById(Guid id) => await _repository.GetById(id) ??
         throw new Exception("Usuário não encontrado!");
+
+    public async Task<Guid> Transfer(Guid payerId, TransferDTO transferDTO)
+    {
+        var payer = await _getById(payerId) ;
+
+        if(payer.Type == UserType.Retailer)
+        {
+            throw new Exception("Lojistas não podem realizar transferências!");
+        }
+
+        if(payer.Wallet < transferDTO.Value)
+        {
+            throw new Exception("Você não tem saldo suficiente para essa transferência!");
+        }
+
+        payer.Pay(transferDTO.Value);
+        var payee = await _getById(transferDTO.PayeeId);
+        payee.Receiver(transferDTO.Value);
+
+        var transactionId = await _transactionService.Create(
+            payerId,
+            transferDTO
+        );
+
+        if(!await _paymentService.Verify())
+        {
+            throw new Exception("Transação recusada pelo serviço de pagamento!");
+        }
+
+        await _unitOfWork.Save();
+
+        return transactionId;
+    }
 }

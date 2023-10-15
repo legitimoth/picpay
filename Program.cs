@@ -10,6 +10,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 builder.Services.AddControllers();
 
@@ -29,6 +31,9 @@ builder.Services.AddDbContext<PicPayDbContext>(
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));
+
+// HttpClient
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
