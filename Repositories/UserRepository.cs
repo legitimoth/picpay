@@ -18,9 +18,9 @@ public class UserRepository : IUserRepository
         return _context.Users.Where(u => u.Active).ToListAsync();
     }
 
-    public Guid Create(User user)
+    public async Task<Guid> Create(User user)
     {
-        _context.Add(user);
+        await _context.AddAsync(user);
         return user.Id;
     }
 

@@ -31,7 +31,7 @@ public class UserService : IUserService
             throw new Exception("Já existe usuário cadastrado para o email ou CNPJ/CPF informado!");
         }
 
-        var userId = _repository.Create(user);
+        var userId = await _repository.Create(user);
         await _unitOfWork.Save();
 
         return userId;
