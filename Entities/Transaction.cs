@@ -21,5 +21,6 @@ public class Transaction
         PayeeId = payeeId;
         Value = value;
         Date = DateTime.UtcNow;
+        Id = id;
     }
 }

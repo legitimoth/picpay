@@ -34,4 +34,5 @@ public class User
     public void Disable() => Active = false;
     public void Pay(decimal value) => Wallet -= value;
     public void Receiver(decimal value) => Wallet += value;
+    public string GetFullName() => $"{FirstName} {LastName}";
 }

@@ -8,4 +8,5 @@ public interface IUserService
     public Task Update(Guid id, UserUpdateDTO userUpdateDTO);
     public Task Delete(Guid id);
     public Task<Guid> Transfer(Guid payerId, TransferDTO transferDTO);
+    public Task<List<TransactionDTO>> GetTransactions(Guid id);
 }

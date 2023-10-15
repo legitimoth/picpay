@@ -82,4 +82,15 @@ public class UserController : ControllerBase
     {
         return await _service.Transfer(payerId, transferDTO);
     }
+
+    /// <summary>
+    /// Obtém as transações associadas a um usuário pelo ID.
+    /// </summary>
+    /// <param name="id">O identificador único (GUID) do usuário cujas transações serão obtidas.</param>
+    /// <returns>Uma lista de objetos TransactionDTO representando as transações do usuário.</returns>
+    [HttpGet("{id}/transactions")]
+    public async Task<List<TransactionDTO>> GetTransactions(Guid id)
+    {
+        return await _service.GetTransactions(id);
+    }
 }

@@ -106,4 +106,9 @@ public class UserService : IUserService
 
         return transactionId;
     }
+
+    public async Task<List<TransactionDTO>> GetTransactions(Guid id)
+    {
+        return await _transactionService.GetByUserId(id);
+    }
 }
