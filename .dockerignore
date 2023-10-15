@@ -1,0 +1,14 @@
+bin/
+obj/
+node_modules/
+Dockerfile
+docker-compose.yml
+.dockerignore
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln.docstates
+.vs/
+.DS_Store
+/Data
