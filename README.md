@@ -45,7 +45,7 @@ O Propósito desse projeto é mostrar para desenvolvedores _Júniors_ (principal
     - Value <small>`decimal`</small>
     - Date <small>`DateTime`</small>
 
-##🧩 Pré-requisitos
+## 🧩 Pré-requisitos
 
 - Docker
 - .Net 7
