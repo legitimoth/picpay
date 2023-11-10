@@ -4,7 +4,7 @@ Essa é uma prova técnica fornecida pela empresa PicPay para contratação de d
 
 🔗 **Links:**
 - Prova: https://github.com/PicPay/picpay-desafio-backend
-- Vídeo com resolução: https://youtu.be/TMgrPEP0SlM
+- Vídeo com resolução: (Por direitos autorais da música que eu usei no background tive que remover o vídeo)
 
 ## 🔖 Descrição
 
